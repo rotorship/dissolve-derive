@@ -5,6 +5,7 @@ edition = "2024"
 description = "derive macro for creating dissolved structs with public fields and optional field renaming"
 readme = "README.md"
 repository = "https://github.com/rotorship/dissolve-derive"
+license = "MIT OR Apache-2.0"
 
 [lib]
 proc-macro = true
