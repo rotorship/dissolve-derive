@@ -1,0 +1,5 @@
+error: rename is unsupported for tuple struct fields, only skip is allowed
+ --> tests/compile_fails/tuple_ranme.rs:4:20
+  |
+4 | struct TupleRename(#[dissolved(rename = "name")] String);
+  |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

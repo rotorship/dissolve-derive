@@ -1,0 +1,5 @@
+error: cannot create dissolved struct with no fields (all fields are skipped)
+ --> tests/compile_fails/all_fields_skipped.rs:5:8
+  |
+5 | struct AllSkipped {
+  |        ^^^^^^^^^^

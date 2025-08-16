@@ -1,0 +1,5 @@
+error: cannot use rename on skipped field
+ --> tests/compile_fails/skip_and_rename.rs:5:2
+  |
+5 |     #[dissolved(skip, rename = "new_name")]
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -1,0 +1,5 @@
+error: dissolved attribute should use list syntax: #[dissolved(rename = "new_name")] instead of #[dissolved = ...]
+ --> tests/compile_fails/name_value_syntax.rs:5:2
+  |
+5 |     #[dissolved = "skip"]
+  |     ^^^^^^^^^^^^^^^^^^^^^

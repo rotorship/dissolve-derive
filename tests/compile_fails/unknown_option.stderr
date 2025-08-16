@@ -1,0 +1,5 @@
+error: unknown dissolved attribute option 'skip'; supported options: rename, unknown = "new_name"
+ --> tests/compile_fails/unknown_option.rs:5:14
+  |
+5 |     #[dissolved(unknown)]
+  |                 ^^^^^^^

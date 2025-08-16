@@ -1,0 +1,5 @@
+error: dissolved attribute requires options, use #[dissolved(skip)] or #[dissolved(rename = "new_name")] instead
+ --> tests/compile_fails/empty_attribute.rs:5:2
+  |
+5 |     #[dissolved]
+  |     ^^^^^^^^^^^^
