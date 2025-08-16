@@ -1,0 +1,10 @@
+[package]
+name = "dissolve-derive"
+version = "0.1.0-pre"
+edition = "2024"
+description = "derive macro for creating dissolved structs with public fields and optional field renaming"
+readme = "README.md"
+repository = "https://github.com/rotorship/dissolve-derive"
+
+[lib]
+proc-macro = true
