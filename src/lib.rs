@@ -109,6 +109,7 @@ impl FieldInfo {
 
 fn generate_dissolve_impl(input: &DeriveInput) -> Result<proc_macro2::TokenStream> {
 	let struct_name = &input.ident;
+	let generics = &input.generics;
 
 	let Data::Struct(data_struct) = &input.data else {
 		return Err(Error::new_spanned(
@@ -118,8 +119,8 @@ fn generate_dissolve_impl(input: &DeriveInput) -> Result<proc_macro2::TokenStrea
 	};
 
 	match &data_struct.fields {
-		Fields::Named(fields) => generate_named_struct_impl(struct_name, fields),
-		Fields::Unnamed(fields) => generate_tuple_struct_impl(struct_name, fields),
+		Fields::Named(fields) => generate_named_struct_impl(struct_name, generics, fields),
+		Fields::Unnamed(fields) => generate_tuple_struct_impl(struct_name, generics, fields),
 		Fields::Unit => Err(Error::new_spanned(
 			input,
 			"Dissolve cannot be derived for unit structs",
@@ -129,6 +130,7 @@ fn generate_dissolve_impl(input: &DeriveInput) -> Result<proc_macro2::TokenStrea
 
 fn generate_named_struct_impl(
 	struct_name: &syn::Ident,
+	generics: &syn::Generics,
 	fields: &syn::FieldsNamed,
 ) -> Result<proc_macro2::TokenStream> {
 	let included_fields: Vec<_> = fields
@@ -183,17 +185,20 @@ fn generate_named_struct_impl(
 
 	let dissolved_struct_name = format_ident!("{}Dissolved", struct_name);
 
+	// Split generics for use in different positions
+	let (impl_generics, ty_generics, where_clause) = generics.split_for_impl();
+
 	Ok(quote! {
-		pub struct #dissolved_struct_name {
+		pub struct #dissolved_struct_name #impl_generics #where_clause {
 			#(#field_definitions),*
 		}
 
-		impl #struct_name {
+		impl #impl_generics #struct_name #ty_generics #where_clause {
 			/// Dissolve this struct into its public-field equivalent.
 			///
 			/// This method consumes the original struct and returns a new struct where all included
 			/// fields are made public and optionally renamed.
-			pub fn dissolve(self) -> #dissolved_struct_name {
+			pub fn dissolve(self) -> #dissolved_struct_name #ty_generics {
 				#dissolved_struct_name {
 					#(#field_moves),*
 				}
@@ -204,6 +209,7 @@ fn generate_named_struct_impl(
 
 fn generate_tuple_struct_impl(
 	struct_name: &syn::Ident,
+	generics: &syn::Generics,
 	fields: &FieldsUnnamed,
 ) -> Result<proc_macro2::TokenStream> {
 	// For tuple structs, only `skip` is supported (`rename` does not make sense)
@@ -265,8 +271,11 @@ fn generate_tuple_struct_impl(
 		quote! { (#(#field_moves),*) }
 	};
 
+	// Split generics for use in different positions
+	let (impl_generics, ty_generics, where_clause) = generics.split_for_impl();
+
 	Ok(quote! {
-		impl #struct_name {
+		impl #impl_generics #struct_name #ty_generics #where_clause {
 			/// Dissolve this tuple struct into a tuple of its included non-skipped fields.
 			pub fn dissolve(self) -> #tuple_type {
 				#tuple_construction
