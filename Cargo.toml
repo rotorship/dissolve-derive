@@ -1,6 +1,6 @@
 [package]
 name = "dissolve-derive"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 description = "derive macro for creating dissolved structs with public fields and optional field renaming"
 readme = "README.md"
