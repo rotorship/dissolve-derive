@@ -168,7 +168,13 @@ fn generate_named_struct_impl(
 			None => original_name,
 		};
 
-		quote! { pub #dissolved_field_name: #ty }
+		// Extract doc comments from the original field
+		let doc_attrs = field.attrs.iter().filter(|attr| attr.path().is_ident("doc"));
+
+		quote! {
+			#(#doc_attrs)*
+			pub #dissolved_field_name: #ty
+		}
 	});
 
 	let field_moves = included_fields.iter().map(|(field, info)| {
@@ -188,7 +194,14 @@ fn generate_named_struct_impl(
 	// Split generics for use in different positions
 	let (impl_generics, ty_generics, where_clause) = generics.split_for_impl();
 
+	let dissolved_struct_doc = format!(
+		"Dissolved struct for [`{struct_name}`].\n\n\
+		This struct contains all non-skipped fields from the original struct with public visibility. \
+		Fields may be renamed according to `#[dissolved(rename = \"...\")]` attributes.",
+	);
+
 	Ok(quote! {
+		#[doc = #dissolved_struct_doc]
 		pub struct #dissolved_struct_name #impl_generics #where_clause {
 			#(#field_definitions),*
 		}
