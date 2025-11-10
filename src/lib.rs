@@ -89,7 +89,7 @@
 //! Safely transition between states by dissolving one state struct and constructing the next:
 //!
 //! ```rust
-//! use core::time::Instant;
+//! use std::time::Instant;
 //!
 //! use dissolve_derive::Dissolve;
 //!
