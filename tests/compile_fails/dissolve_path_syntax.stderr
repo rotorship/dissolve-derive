@@ -1,0 +1,5 @@
+error: dissolve attribute must use list syntax: #[dissolve(visibility = "...")]
+ --> tests/compile_fails/dissolve_path_syntax.rs:4:1
+  |
+4 | #[dissolve = "something"]
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^

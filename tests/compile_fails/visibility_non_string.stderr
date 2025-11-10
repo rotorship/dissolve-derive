@@ -1,0 +1,5 @@
+error: visibility value must be a string literal
+ --> tests/compile_fails/visibility_non_string.rs:4:25
+  |
+4 | #[dissolve(visibility = 42)]
+  |                         ^^

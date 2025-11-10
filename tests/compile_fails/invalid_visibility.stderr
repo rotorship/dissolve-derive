@@ -1,0 +1,5 @@
+error: invalid visibility: unexpected token. Supported: 'pub', 'pub(crate)', 'pub(super)', 'pub(self)' or empty for private
+ --> tests/compile_fails/invalid_visibility.rs:4:25
+  |
+4 | #[dissolve(visibility = "invalid_visibility")]
+  |                         ^^^^^^^^^^^^^^^^^^^^

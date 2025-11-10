@@ -1,5 +1,7 @@
 #![allow(dead_code)]
 
+use core::f64;
+
 use dissolve_derive::Dissolve;
 
 #[test]
@@ -235,4 +237,161 @@ fn test_generic_with_where_clause() {
 	// Assert
 	assert_eq!(value, vec![1, 2, 3]);
 	assert_eq!(name, "series");
+}
+
+#[test]
+fn test_visibility_pub_crate() {
+	#[derive(Dissolve)]
+	#[dissolve(visibility = "pub(crate)")]
+	struct VisibilityCrate {
+		data: String,
+	}
+
+	// Arrange
+	let s = VisibilityCrate { data: "test".into() };
+
+	// Act
+
+	let VisibilityCrateDissolved { data } = s.dissolve(); // should be accessible as pub(crate)
+
+	// Assert
+	assert_eq!(data, "test");
+}
+
+mod test_pub_super_visibility {
+	use dissolve_derive::Dissolve;
+
+	#[derive(Dissolve)]
+	#[dissolve(visibility = "pub(super)")]
+	struct VisibilitySuper {
+		value: i32,
+	}
+
+	#[test]
+	fn test_visibility_pub_super() {
+		// Arrange
+		let s = VisibilitySuper { value: 42 };
+
+		// Act
+		let VisibilitySuperDissolved { value } = s.dissolve();
+
+		// Assert
+		assert_eq!(value, 42);
+	}
+}
+
+#[test]
+fn test_visibility_pub_self() {
+	#[derive(Dissolve)]
+	#[dissolve(visibility = "pub(self)")]
+	struct VisibilitySelf {
+		name: String,
+	}
+
+	// Arrange
+	let s = VisibilitySelf { name: "private".into() };
+
+	// Act
+	let VisibilitySelfDissolved { name } = s.dissolve();
+
+	// Assert
+	assert_eq!(name, "private");
+}
+
+#[test]
+fn test_visibility_private() {
+	#[derive(Dissolve)]
+	#[dissolve(visibility = "")]
+	struct VisibilityPrivate {
+		secret: u64,
+	}
+
+	// Arrange
+	let s = VisibilityPrivate { secret: 123456 };
+
+	// Act
+	let VisibilityPrivateDissolved { secret } = s.dissolve();
+
+	// Assert
+	assert_eq!(secret, 123456);
+}
+
+#[test]
+fn test_visibility_default_pub() {
+	// Without visibility attribute, should default to pub
+	#[derive(Dissolve)]
+	struct DefaultVisibility {
+		field: String,
+	}
+
+	// Arrange
+	let s = DefaultVisibility { field: "public".into() };
+
+	// Act
+	let DefaultVisibilityDissolved { field } = s.dissolve();
+
+	// Assert
+	assert_eq!(field, "public");
+}
+
+#[test]
+fn test_visibility_with_skip_and_rename() {
+	#[derive(Dissolve)]
+	#[dissolve(visibility = "pub(crate)")]
+	struct VisibilityWithAttributes {
+		#[dissolved(rename = "renamed_field")]
+		original_field: String,
+
+		#[dissolved(skip)]
+		hidden: bool,
+
+		normal: i32,
+	}
+
+	// Arrange
+	let s = VisibilityWithAttributes { original_field: "value".into(), hidden: true, normal: 99 };
+
+	// Act
+	let VisibilityWithAttributesDissolved { renamed_field, normal } = s.dissolve();
+
+	// Assert
+	assert_eq!(renamed_field, "value");
+	assert_eq!(normal, 99);
+}
+
+#[test]
+fn test_visibility_tuple_struct() {
+	#[derive(Dissolve)]
+	#[dissolve(visibility = "pub(crate)")]
+	struct VisibilityTuple(String, i32, #[dissolved(skip)] f64);
+
+	// Arrange
+	let t = VisibilityTuple("tuple".into(), 42, f64::consts::PI);
+
+	// Act
+	let (field_0, field_1) = t.dissolve();
+
+	// Assert
+	assert_eq!(field_0, "tuple");
+	assert_eq!(field_1, 42);
+}
+
+#[test]
+fn test_visibility_with_generics() {
+	#[derive(Dissolve)]
+	#[dissolve(visibility = "pub(crate)")]
+	struct VisibilityGeneric<T> {
+		value: T,
+		count: usize,
+	}
+
+	// Arrange
+	let s = VisibilityGeneric { value: vec![1, 2, 3], count: 3 };
+
+	// Act
+	let VisibilityGenericDissolved { value, count } = s.dissolve();
+
+	// Assert
+	assert_eq!(value, vec![1, 2, 3]);
+	assert_eq!(count, 3);
 }
