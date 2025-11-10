@@ -1,0 +1,21 @@
+error[E0603]: struct `PrivateDissolvedDissolved` is private
+  --> tests/compile_fails/dissolved_struct_visibility.rs:14:16
+   |
+14 |     let inner::PrivateDissolvedDissolved { value } = s.dissolve();
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^ private struct
+   |
+note: the struct `PrivateDissolvedDissolved` is defined here
+  --> tests/compile_fails/dissolved_struct_visibility.rs:4:14
+   |
+ 4 |     #[derive(Dissolve)]
+   |              ^^^^^^^^
+   = note: this error originates in the derive macro `Dissolve` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0624]: method `dissolve` is private
+  --> tests/compile_fails/dissolved_struct_visibility.rs:14:56
+   |
+ 4 |     #[derive(Dissolve)]
+   |              -------- private method defined here
+...
+14 |     let inner::PrivateDissolvedDissolved { value } = s.dissolve();
+   |                                                        ^^^^^^^^ private method

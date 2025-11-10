@@ -395,3 +395,45 @@ fn test_visibility_with_generics() {
 	assert_eq!(value, vec![1, 2, 3]);
 	assert_eq!(count, 3);
 }
+
+mod test_dissolved_struct_visibility_matching {
+	// Test that dissolved struct has same visibility as dissolve method
+	mod inner {
+		use dissolve_derive::Dissolve;
+
+		#[derive(Dissolve)]
+		#[dissolve(visibility = "pub(super)")]
+		pub struct SuperVisible {
+			pub data: String,
+		}
+	}
+
+	#[test]
+	fn test_dissolved_struct_accessible_in_super() {
+		// Arrange
+		let s = inner::SuperVisible { data: "test".into() };
+
+		// Act
+		let inner::SuperVisibleDissolved { data } = s.dissolve();
+
+		// Assert
+		assert_eq!(data, "test");
+	}
+}
+
+#[test]
+fn test_default_pub_visibility_for_dissolved_struct() {
+	// Arrange
+	#[derive(Dissolve)]
+	struct DefaultPub {
+		field: i32,
+	}
+
+	let s = DefaultPub { field: 99 };
+
+	// Act
+	let DefaultPubDissolved { field } = s.dissolve();
+
+	// Assert
+	assert_eq!(field, 99);
+}

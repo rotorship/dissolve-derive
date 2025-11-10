@@ -147,9 +147,10 @@
 //!
 //! ### Container Attributes (on structs)
 //!
-//! - `#[dissolve(visibility = "...")]` - Set the visibility of the `dissolve` method
+//! - `#[dissolve(visibility = "...")]` - Set the visibility of both the `dissolve` method and the generated dissolved struct
 //!   - Supported values: `"pub"`, `"pub(crate)"`, `"pub(super)"`, `"pub(self)"`, or empty string for private
 //!   - Default: `"pub"` if not specified
+//!   - Note: The dissolved struct (`{StructName}Dissolved`) will have the same visibility as the `dissolve` method
 //!
 //! ### Field Attributes
 //!
@@ -189,7 +190,11 @@
 //!     value: i32,
 //! }
 //!
-//! // The dissolve method is only accessible within the same crate
+//! // Both the dissolve method and InternalDataDissolved struct
+//! // are only accessible within the same crate
+//! # fn example(data: InternalData) {
+//! let InternalDataDissolved { value } = data.dissolve();
+//! # }
 //! ```
 //!
 //! ### Skipping Fields
@@ -516,7 +521,8 @@ fn generate_named_struct_impl(
 
 	let dissolved_struct_doc = format!(
 		"Dissolved struct for [`{struct_name}`].\n\n\
-		This struct contains all non-skipped fields from the original struct with public visibility. \
+		This struct contains all non-skipped fields from the original struct. \
+		The visibility of this struct matches the visibility of the `dissolve` method. \
 		Fields may be renamed according to `#[dissolved(rename = \"...\")]` attributes.",
 	);
 
@@ -524,7 +530,7 @@ fn generate_named_struct_impl(
 
 	Ok(quote! {
 		#[doc = #dissolved_struct_doc]
-		pub struct #dissolved_struct_name #impl_generics #where_clause {
+		#visibility struct #dissolved_struct_name #impl_generics #where_clause {
 			#(#field_definitions),*
 		}
 
