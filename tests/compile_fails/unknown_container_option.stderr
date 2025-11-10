@@ -1,0 +1,5 @@
+error: unknown dissolve attribute option 'unknown_option'; supported option: visibility
+ --> tests/compile_fails/unknown_container_option.rs:4:12
+  |
+4 | #[dissolve(unknown_option = "value")]
+  |            ^^^^^^^^^^^^^^
