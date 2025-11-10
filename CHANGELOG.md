@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <csr-id-b09e27deb8249ca64a56ffda673c9b85e9fbe2e4/>
 <csr-id-c32d40d597f927656f46d93ad065ce659e0ffc76/>
 <csr-id-179a7fb027e7c0a45a671057c9a8a1b798ccf279/>
+<csr-id-69d14ef753b4f1d2cc7e90bbc2d760156f1be071/>
 
 ### Chore
 
@@ -24,6 +25,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - <csr-id-a0a1ea8568994ec7431efa5ca2c8eac1b4022848/> cargo init
  - <csr-id-935c184fa3c48c506367d584775de689b70da6ca/> add README
  - <csr-id-b09e27deb8249ca64a56ffda673c9b85e9fbe2e4/> add gitignore
+
+### Chore
+
+ - <csr-id-57bbcaf87425c464b7f357ddbd9808cfd7127685/> bump version to v0.1.4
 
 ### Bug Fixes
 
@@ -47,14 +52,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - <csr-id-125f154e30348c14dd9cad1105eed2eb8cf592e9/> add support for generics
  - <csr-id-617d586719d51a04d49b9ae91ae35ba993a9cf34/> add doc comment to dissolved struct and inherit doc comments from fields of original struct
  - <csr-id-006a136114a15c712c61241e42c28cacadda9b01/> add visibility attribute to set the visibility of dissolve method
+ - <csr-id-afc47c9e8a331c283b7a72143b53833b2fbfd6ed/> apply same visibility attribute to both dissolve method and the dissolved struct
 
 ### Commit Statistics
 
 <csr-read-only-do-not-edit/>
 
- - 6 commits contributed to the release over the course of 21 calendar days.
- - 21 days passed between releases.
- - 3 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 4 commits contributed to the release.
+ - 2 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
 
 ### Commit Details
@@ -64,6 +69,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - Bump version to v0.1.4 (57bbcaf)
+    - Merge pull request #9 from rotorship/feature/visibility-config (8f09c6a)
+    - Apply same visibility attribute to both dissolve method and the dissolved struct (afc47c9)
+    - Merge pull request #8 from rotorship/release/v0.1.3 (10cca68)
+</details>
+
+## 0.1.3 (2025-11-10)
+
+### Chore
+
+ - <csr-id-4bb0d105521cb2bf55bf5bf899e13b371404f543/> add changelog for v0.1.3
+ - <csr-id-69d14ef753b4f1d2cc7e90bbc2d760156f1be071/> bump version to v0.1.3
+
+### New Features
+
+ - <csr-id-006a136114a15c712c61241e42c28cacadda9b01/> add visibility attribute to set the visibility of dissolve method
+
+### Bug Fixes
+
+ - <csr-id-77e505b51c3553128215b4368466da066589d405/> fix import in doc comment
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 7 commits contributed to the release over the course of 21 calendar days.
+ - 21 days passed between releases.
+ - 4 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Add changelog for v0.1.3 (4bb0d10)
     - Bump version to v0.1.3 (69d14ef)
     - Merge pull request #7 from rotorship/feature/visibility-config (2fe1fe9)
     - Fix import in doc comment (77e505b)
@@ -73,6 +116,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 </details>
 
 ## 0.1.2 (2025-10-20)
+
+<csr-id-3b3c54cd4f0cadc292161b2b38c00b90582dce6c/>
+<csr-id-179a7fb027e7c0a45a671057c9a8a1b798ccf279/>
 
 ### Chore
 
