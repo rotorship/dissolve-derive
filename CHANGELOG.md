@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <csr-id-935c184fa3c48c506367d584775de689b70da6ca/>
 <csr-id-b09e27deb8249ca64a56ffda673c9b85e9fbe2e4/>
 <csr-id-c32d40d597f927656f46d93ad065ce659e0ffc76/>
+<csr-id-179a7fb027e7c0a45a671057c9a8a1b798ccf279/>
 
 ### Chore
 
@@ -23,6 +24,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - <csr-id-a0a1ea8568994ec7431efa5ca2c8eac1b4022848/> cargo init
  - <csr-id-935c184fa3c48c506367d584775de689b70da6ca/> add README
  - <csr-id-b09e27deb8249ca64a56ffda673c9b85e9fbe2e4/> add gitignore
+
+### Bug Fixes
+
+ - <csr-id-77e505b51c3553128215b4368466da066589d405/> fix import in doc comment
+
+### Chore
+
+ - <csr-id-69d14ef753b4f1d2cc7e90bbc2d760156f1be071/> bump version to v0.1.3
 
 ### Chore
 
@@ -37,13 +46,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - <csr-id-444213217c129ec4e23e6cfec7f90fec25d675d6/> implement Dissolve derive macro
  - <csr-id-125f154e30348c14dd9cad1105eed2eb8cf592e9/> add support for generics
  - <csr-id-617d586719d51a04d49b9ae91ae35ba993a9cf34/> add doc comment to dissolved struct and inherit doc comments from fields of original struct
+ - <csr-id-006a136114a15c712c61241e42c28cacadda9b01/> add visibility attribute to set the visibility of dissolve method
 
 ### Commit Statistics
 
 <csr-read-only-do-not-edit/>
 
- - 3 commits contributed to the release.
- - 2 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 6 commits contributed to the release over the course of 21 calendar days.
+ - 21 days passed between releases.
+ - 3 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
 
 ### Commit Details
@@ -53,12 +64,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - Bump version to v0.1.3 (69d14ef)
+    - Merge pull request #7 from rotorship/feature/visibility-config (2fe1fe9)
+    - Fix import in doc comment (77e505b)
+    - Merge pull request #6 from rotorship/feature/visibility-config (29d4d00)
+    - Add visibility attribute to set the visibility of dissolve method (006a136)
+    - Merge pull request #5 from rotorship/release/v0.1.2 (45d7f2d)
+</details>
+
+## 0.1.2 (2025-10-20)
+
+### Chore
+
+ - <csr-id-3b3c54cd4f0cadc292161b2b38c00b90582dce6c/> add changelog for v0.1.2
+ - <csr-id-179a7fb027e7c0a45a671057c9a8a1b798ccf279/> prepare to publish v0.1.2 to crates.io
+
+### New Features
+
+ - <csr-id-617d586719d51a04d49b9ae91ae35ba993a9cf34/> add doc comment to dissolved struct and inherit doc comments from fields of original struct
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 5 commits contributed to the release.
+ - 3 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Add changelog for v0.1.2 (3b3c54c)
     - Prepare to publish v0.1.2 to crates.io (179a7fb)
+    - Merge pull request #4 from rotorship/feature/inherit-doc-comments (0a08d8e)
     - Add doc comment to dissolved struct and inherit doc comments from fields of original struct (617d586)
     - Merge pull request #3 from rotorship/release/v0.1.1 (b3c6842)
 </details>
 
 ## 0.1.1 (2025-10-12)
+
+<csr-id-3da09d144560ffae9774741afbcac1973878d722/>
+<csr-id-c32d40d597f927656f46d93ad065ce659e0ffc76/>
 
 ### Chore
 
